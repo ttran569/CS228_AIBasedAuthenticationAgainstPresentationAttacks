@@ -16,7 +16,7 @@ Why this setup:
 - FaceNet provides a documented PyTorch recognition pipeline with pretrained weights.
 - InceptionResnetV1 produces 512-dimensional embeddings for face comparison.
 - The implementation includes MTCNN face detection and uses 160 x 160 crop preprocessing.
-- MiniFASNetV2 is used as the PAD model for determining whether a presented face is bona fide.
+- MiniFASNetV2 is used as the PAD model for determining whether a presented face is genuine.
 - Both components are compatible in the same deep learning stack and are MIT-licensed.
 - FaceNet reference: https://github.com/timesler/facenet-pytorch?utm_source=chatgpt.com
 - CelebA-Spoof dataset reference: https://github.com/ZhangYuanhan-AI/CelebA-Spoof
@@ -113,7 +113,7 @@ For the identity component, we report:
 
 For the PAD component, we report:
 - APCER (Attack Presentation Classification Error Rate)
-- BPCER (Bona fide Presentation Classification Error Rate)
+- GPCER (Genuine Presentation Classification Error Rate)
 - counts for each error rate
 
 For the combined system, we report the combined attack success rate, defined as the fraction of attack trials that pass both identity verification and PAD. We also track:
@@ -134,7 +134,7 @@ $$
 ## Experimental procedure
 
 1. Split the dataset by subject to enforce separation between identities used for development and testing.
-2. For each identity, select a bona fide reference image for enrollment.
+2. For each identity, select a genuine reference image for enrollment.
 3. Build genuine, impostor, and spoof verification trials.
 4. Compute FaceNet embeddings for all probes and reference images.
 5. Compute cosine similarity for identity verification.
@@ -158,7 +158,7 @@ The selected experimental setup is:
 | Component | Selection | Purpose |
 | --- | --- | --- |
 | Identity model | FaceNet / InceptionResnetV1, VGGFace2 weights | Compare the presented face with the enrolled identity |
-| PAD model | MiniFASNetV2 | Determine whether the presentation appears bona fide |
+| PAD model | MiniFASNetV2 | Determine whether the presentation appears genuine |
 | Authentication rule | Identity match and PAD pass | Accept only when both checks pass |
 
 This preserves the necessary recognition and antispoofing components while matching the project’s objective of studying AI-based authentication against presentation attacks.
