@@ -126,7 +126,7 @@ For the combined system, we report the combined attack success rate, defined as 
 The most important combined metric is the attack success rate under the full decision rule:
 
 $$
-\text{Combined Attack Success Rate} = \frac{\#\{\text{attacks accepted by identity and PAD}\}}{\#\{\text{all attacks}\}}
+\text{Combined Attack Success Rate} = \frac{\text{Number of attacks accepted by identity and PAD}}{\text{Number of all attacks}}
 $$
 
 ---
