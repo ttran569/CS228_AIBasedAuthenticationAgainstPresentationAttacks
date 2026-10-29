@@ -1,10 +1,10 @@
 # CS228: AI-Based Authentication Against Presentation Attacks
 
-## Project Proposal
-
 This project studies facial authentication under presentation attacks (specifically spoofed images and replay attacks) by combining identity verification with liveness-style presentation attack detection (PAD). The core design is a two-stage pipeline: 1) compare a probe face against an enrolled reference identity, and 2) reject presentation attacks that attempt to spoof that identity.
 
 The experimental plan for Checkpoint 1 follows the FaceNet-based recognition setup described below and retains both identity matching and PAD as required components.
+
+The implementation details and end-to-end experiment are captured in the project notebook, while this README summarizes the design, methodology, and evaluation plan.
 
 ---
 
@@ -22,30 +22,7 @@ Why this setup:
 - CelebA-Spoof dataset reference: https://github.com/ZhangYuanhan-AI/CelebA-Spoof
 - MiniFASNetV2 reference: https://github.com/minivision-ai/Silent-Face-Anti-Spoofing/blob/master/README_EN.md
 
-The recommended initialization is:
-
-```python
-from facenet_pytorch import MTCNN, InceptionResnetV1
-
-face_detector = MTCNN(image_size=160, post_process=True)
-face_recognizer = InceptionResnetV1(pretrained='vggface2').eval()
-```
-
-For the PAD branch, MiniFASNetV2 is typically initialized from the repository checkpoint and run in evaluation mode:
-
-```python
-import torch
-from model_lib.MiniFASNet import MiniFASNetV2
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-pad_model = MiniFASNetV2().to(device)
-pad_model.eval()
-
-state_dict = torch.load('path/to/minifasnetv2.pth', map_location=device)
-pad_model.load_state_dict(state_dict)
-```
-
-Then each FaceNet-aligned crop is fed to the PAD model and converted to a bona-fide score via a sigmoid/logit output. FaceNet is used for identity verification via embedding distance; no new classifier needs to be trained for the CelebA-Spoof identities.
+Then each FaceNet-aligned crop is fed to the PAD model and converted to a genuine score via a sigmoid/logit (logistic unit) output. FaceNet is used for identity verification via embedding distance; no new classifier needs to be trained for the CelebA-Spoof identities.
 
 ---
 
