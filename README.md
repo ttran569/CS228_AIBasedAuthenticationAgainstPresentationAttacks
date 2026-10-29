@@ -90,7 +90,7 @@ For the identity component, I will report:
 
 For the PAD component, I will report:
 - APCER (Attack Presentation Classification Error Rate)
-- GPCER (Genuine Presentation Classification Error Rate)
+- BPCER (Bona Fide Presentation Classification Error Rate)
 - counts for each error rate
 
 For the combined system, I will report the combined attack success rate, defined as the fraction of attack trials that pass both identity verification and PAD. I also track:
