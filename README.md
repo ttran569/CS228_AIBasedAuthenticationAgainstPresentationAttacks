@@ -10,7 +10,7 @@ The implementation details and end-to-end experiment are captured in the project
 
 ## Model choice
 
-We will use FaceNet via the facenet-pytorch implementation, specifically InceptionResnetV1 pretrained on VGGFace2, together with MiniFASNetV2 for PAD.
+I will use FaceNet via the facenet-pytorch implementation, specifically InceptionResnetV1 pretrained on VGGFace2, together with MiniFASNetV2 for PAD.
 
 Why this setup:
 - FaceNet provides a documented PyTorch recognition pipeline with pretrained weights.
@@ -28,9 +28,9 @@ Then each FaceNet-aligned crop is fed to the PAD model and converted to a genuin
 
 ## Dataset and identity setup
 
-We will use CelebA-Spoof for the benchmark, with both genuine and attack samples. The evaluation will preserve subject separation across train/validation/test splits, so that identities seen in one split do not leak into another.
+I will use CelebA-Spoof for the benchmark, with both genuine and attack samples. The evaluation will preserve subject separation across train/validation/test splits, so that identities seen in one split do not leak into another.
 
-For each evaluated identity, we reserve a genuine image as the enrollment reference. Then we construct the following verification trials:
+For each evaluated identity, there will be a genuine image as the enrollment reference. Then the following verification trials will be done:
 
 - Genuine trial: another genuine image of the same person -> Accept
 - Ordinary impostor trial: a genuine image of a different person -> Reject
@@ -38,7 +38,7 @@ For each evaluated identity, we reserve a genuine image as the enrollment refere
 
 For attack trials, the spoof is compared against the person it depicts. This measures whether an attacker presenting the correct person’s appearance can pass authentication.
 
-Each probe is represented by an embedding from FaceNet. We compute cosine similarity between the probe embedding and the enrollment reference embedding. The final decision is based on the combined rule:
+Each probe is represented by an embedding from FaceNet. The cosine similarity is computed between the probe embedding and the enrollment reference embedding. The final decision is based on the combined rule:
 
 $$
 \text{Accept} = (\text{identity similarity} \geq \tau_{\mathrm{ID}}) \land (\text{genuine score} \geq \tau_{\mathrm{PAD}})
@@ -61,7 +61,7 @@ The project seeks to answer two intertwined questions:
 
 ## Checkpoint 1: comparison of two systems
 
-We will compare these two systems on the same evaluation set:
+The two systems will be compared on the same evaluation set:
 
 ### 1) FaceNet alone
 
@@ -83,17 +83,17 @@ The combined system accepts an attempt only when both checks are successful. An 
 
 ## Evaluation metrics
 
-For the identity component, we report:
+For the identity component, I will report:
 - FAR (False Acceptance Rate)
 - FRR (False Rejection Rate)
 - counts for every rate bucket, not only percentages
 
-For the PAD component, we report:
+For the PAD component, I will report:
 - APCER (Attack Presentation Classification Error Rate)
 - GPCER (Genuine Presentation Classification Error Rate)
 - counts for each error rate
 
-For the combined system, we report the combined attack success rate, defined as the fraction of attack trials that pass both identity verification and PAD. We also track:
+For the combined system, I will report the combined attack success rate, defined as the fraction of attack trials that pass both identity verification and PAD. I also track:
 - number of attack trials evaluated,
 - number of attacks that pass identity only,
 - number of attacks that pass PAD only,
@@ -124,7 +124,7 @@ $$
 
 ## Pretraining overlap note
 
-We will preserve strict subject separation in our local evaluation. However, the pretrained FaceNet model is trained on VGGFace2 and may include identities overlapping with the benchmark dataset. This overlap is not assumed to be absent and should be described as unverified unless we audit it directly. We will explicitly note this limitation in the final analysis.
+I will preserve strict subject separation in our local evaluation. However, the pretrained FaceNet model is trained on VGGFace2 and may include identities overlapping with the benchmark dataset. This overlap is not assumed to be absent and should be described as unverified unless I audit it directly. I will explicitly note this limitation in the final analysis.
 
 ---
 
