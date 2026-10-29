@@ -138,4 +138,4 @@ The selected experimental setup is:
 | PAD model | MiniFASNetV2 | Determine whether the presentation appears genuine |
 | Authentication rule | Identity match and PAD pass | Accept only when both checks pass |
 
-This preserves the necessary recognition and antispoofing components while matching the project’s objective of studying AI-based authentication against presentation attacks.
+These are the recognition and antispoofing components that will be used for the project's objective of studying AI-based authentication against presentation attacks.
