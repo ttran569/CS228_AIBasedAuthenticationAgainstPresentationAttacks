@@ -79,6 +79,18 @@ This system requires both the identity check and the PAD check to pass. It measu
 
 The combined system accepts an attempt only when both checks are successful. An attack succeeds against the combined system only if it passes both the identity threshold and the PAD threshold.
 
+## Checkpoint 2 current ideas:
+
+### 1) Testing FaceNet and FaceNet + MiniFASNetV2 against forgeries/deepfakes
+While this research project focuses on presentation attacks through spoofs and replays, it can also look into AI-based face authentication's susceptibility to forgeries and deepfakes.
+- ForgeryNet dataset reference: https://github.com/yinanhe/ForgeryNet
+
+### 2) Cross-validation of FaceNet + MiniFASNetV2
+Initial results show that FaceNet + MiniFASNetV2 reduces the false acceptance rate of impostor faces and different bonafide faces, so testing will be done against another 9000 data samples in the CelebA-Spoof dataset to determine whether FaceNet + MiniFASNetV2 is consistent in impostor detection.
+
+### 3) Analysis based on results from initial run
+Running the notebook highlighted that while other forms of attacks had below a 40% acceptance rate, upper body attacks had a near 60% acceptance rate. Further developments can look into why that was the case and if there can be any implementation changes to reduce this high acceptance rate and what trade offs may occur.
+
 ---
 
 ## Evaluation metrics
