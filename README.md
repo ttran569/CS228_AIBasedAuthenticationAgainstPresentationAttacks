@@ -84,6 +84,7 @@ The combined system accepts an attempt only when both checks are successful. An 
 ### 1) Testing FaceNet and FaceNet + MiniFASNetV2 against forgeries/deepfakes
 While this research project focuses on presentation attacks through spoofs and replays, it can also look into AI-based face authentication's susceptibility to forgeries and deepfakes.
 - ForgeryNet dataset reference: https://github.com/yinanhe/ForgeryNet
+  - While the dataset does include video deepfakes, I will be focusing on the image section of their dataset.
 
 ### 2) Cross-validation of FaceNet + MiniFASNetV2
 Initial results show that FaceNet + MiniFASNetV2 reduces the false acceptance rate of impostor faces and different bonafide faces, so testing will be done against another 9000 data samples in the CelebA-Spoof dataset to determine whether FaceNet + MiniFASNetV2 is consistent in impostor detection.
